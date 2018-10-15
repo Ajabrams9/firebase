@@ -25,7 +25,7 @@ $("#submit-info").on("click", function(event){
     var firstTrainTime = $("#first-train-time-input").val().trim();
     //var firstTrainTime = moment($("#first-train-time-input").val().trim(), "HH:mm").format("X");
     var frequency = $("#frequency-input").val().trim();
-    console.log("first train time from the input" + firstTrainTime);
+    //console.log("first train time from the input" + firstTrainTime);
     
     //console.log("this is the first input of first train time" + firstTrainTime);
     
@@ -44,7 +44,7 @@ $("#submit-info").on("click", function(event){
 
     //console.log(newTrain.trainNameInput, newTrain.destinationInput, newTrain.firstTrainTime, newTrain.frequency)
 
-    alert("new train has been added to the databas!");
+    alert("new train has been added to the database!");
 
     //Now Clear Out All Of The Text Boxes
     
@@ -70,13 +70,13 @@ database.ref().on("child_added", function(childSnapshot){
     // First Time (pushed back 1 year to make sure it comes before current time)
     var firstTrainTimeFormatted = moment(firstTrainTime, "HH:mm").subtract(1, "years");
     //.subtract(1, "years")
-    console.log("FIRST TRAIN TIME FORMATTED: " + firstTrainTimeFormatted);
-    console.log(firstTrainTimeFormatted.format("hh:mm:ss"));
+    //console.log("FIRST TRAIN TIME FORMATTED: " + firstTrainTimeFormatted);
+   //console.log(firstTrainTimeFormatted.format("hh:mm:ss"));
 
 
     var currentTime = moment();
     //console.log("this is the current time unformatted" + currentTime);
-    console.log("CURRENT TIME FORMATTED: " + moment(currentTime).format("hh:mm"));
+    //console.log("CURRENT TIME FORMATTED: " + moment(currentTime).format("hh:mm"));
 
     // Difference between the times
     var diffTime = moment().diff(moment(firstTrainTimeFormatted), "minutes");
@@ -86,11 +86,11 @@ database.ref().on("child_added", function(childSnapshot){
 
     // Time apart (remainder)
     var tRemainder = diffTime % frequency;
-    console.log("the remainder" + tRemainder);
+    //console.log("the remainder" + tRemainder);
 
     // Minute Until Train
     var tMinutesTillTrain = frequency - tRemainder;
-    console.log("MINUTES TILL TRAIN: " + tMinutesTillTrain);
+    //console.log("MINUTES TILL TRAIN: " + tMinutesTillTrain);
 
     // Next Train
     var nextTrain = moment().add(tMinutesTillTrain, "minutes").format("hh:mm A");
